@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+    <link rel="manifest" href="manifest.json">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+     <title>Radio Player Peru</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="keywords" content="Radio Player Peru">
+        <meta name="description" content="Radio Player Peru">
+        <meta name="theme-color" content="#fa3232">
+        <meta name="author" content="By: Radio Player Peru">
+        <meta name="copyright" content="Stereo100 Contenidos">
+        <meta name="geo.placename" content="Radio Player Peru">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Radio Player Peru">
+        <meta property="og:url" content="https://radioplayerperuano.blogspot.com">
+        <meta property="og:title" content="Radio Player Peru">
+        <meta property="og:description" content="Radio Player Peru - Emisoras de Peru">
+        <meta property="og:image" content="img/logo.png">
+        <meta property="og:image:type" content="logo.png">
+        <meta property="og:image:width" content="600">
+        <meta property="og:image:height" content="360">
+        <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+        <link rel="apple-touch-icon" href="img/logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css?v=1.0" rel="stylesheet">
+    <link rel="manifest" href="manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="dist/style/main.min.css">
+    <script src="dist/index.min.js"></script>
+    
+    <link rel="stylesheet" href="main.css">
+    </head>
+	 <link rel="manifest" href="manifest.json">
+	<style>
+        html, body {
+            font-family: "Open Sans", sans-serif;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            color: #000000;
+        }
+        #installPopup {
+            display: none;
+            position: fixed;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(221, 221, 221, 0.9);
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            z-index: 1000;
+            text-align: center;
+            border-radius: 15px;
+        }
+        #installPopup button {
+            
+            background: #3a96e0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+    <script src="app.js" defer></script>
+    <link rel="icon" href="img/logo.png">
+    <link rel="manifest" href="manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+    <title>Radio Player Peru</title>
+</head>
+    <div class="overlay" id="overlay"></div>
+    <div id="installPopup">
+        <p>Instala Nuestra Aplicacion a Tu Celular</p>
+        <button id="installAppButton">
+          <img src="img/img-instalar-app-android.png" alt="android" height="48"></a>
+          
+          <img src="img/img-instalar-app-windows.png" alt="windows" height="48"></a>
+          
+          <img src="img/img-instalar-app-iphone.png" alt="iphone" height="48"></a>
+        </button>
+        <div id="iosInstructions" style="display:none;">
+
+        </div>
+    </div>
+<div id="live-preview">
+<div id="player"></div>
+</div>
+<script>
+
+  var player = new AudioPlayer({
+      divId: "player",
+      layout : "phone",
+     audios: [
+      {
+        title: "Mariella FM",
+        artist: "Lima Peru",
+        image: 'assets/4.jpg',
+        album: 'Online Radio',
+        source:'https://streamlive2.hearthis.at:8000/10951720.ogg'
+      },
+      {
+        title: "Sjl Radio",
+        artist: "Lima Peru",
+        image: 'assets/2.jpg',
+        album: 'Online Radio',
+        source:'https://stream-161.zeno.fm/6256hg67bpeuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI2MjU2aGc2N2JwZXV2IiwiaG9zdCI6InN0cmVhbS0xNjEuemVuby5mbSIsInRtIjpmYWxzZSwicnR0bCI6NSwianRpIjoieC0zRmJJLVdSUGFlWGpvZzBZVFZDZyIsImlhdCI6MTc2MTkwMDk1OSwiZXhwIjoxNzYxOTAxMDE5fQ.TWVJP9VS2HAWPHEG0iZCAjarOESKqTk548aT3C8ZjFw'
+      },
+      {
+        title: "ALIVE 80s ",
+        artist: "Lima Peru",
+        image: 'assets/26.jpg',
+        album: 'Online Radio',
+        source:'https://stream.80sa.live/80s-alive.mp3'
+		  },
+      {
+        title: "La Rock & Pop",
+        artist: "Lima Peru",
+        image: 'assets/3.jpg',
+        album: 'Online Radio',
+        source:'https://stream.zeno.fm/gprgtgj3jicvv'
+		  },
+      {
+        title: "Unlimited 80s",
+        artist: "Lima Peru",
+        image: 'assets/33.jpg',
+        album: 'Online Radio',
+        source:'https://n01.radiojar.com/x0vkuhrfca3vv?1763999382=&rj-tok=AAABmracd44ARlvCFSa5JPgTxg&rj-ttl=5'
+      },
+      {
+	title: "Cafe Radio",
+        image: 'assets/1.jpg',
+		artist: "Lima Peru",
+        album: 'Online Radio',
+        source: 'https://stream-153.zeno.fm/scnfxcqndkeuv?zt='
+      },
+	   {
+        title: "Radio Sonica",
+        artist: "Lima Peru",
+        image: 'assets/5.jpg',
+        album: 'Online Radio',
+        source:'https://streamlive2.hearthis.at:8000/10461530.ogg'
+      },
+	{
+        title: "Radio Fuego",
+        artist: "Lima Peru",
+        image: 'assets/6.jpg',
+        album: 'Online Radio',
+        source:'https://streamlive2.hearthis.at:8000/10461509.ogg'
+      },
+	{
+        title: "PBO RADIO",
+        artist: "Lima Peru",
+        image: 'assets/7.jpg',
+        album: 'Online Radio',
+        source:'http://n10.radiojar.com/2fse67zuv8hvv'
+      },
+	{
+        title: "RPP",
+        artist: "Lima Peru",
+        image: 'assets/8.jpg',
+        album: 'Online Radio',
+        source:'https://pe-p1-p-e-xm1-audio.cdn.mdstrm.com/live-audio-aw/5fab3416b5f9ef165cfab6e9/playlist.m3u8?aid=5faaeb72f92d7b07dfe10181&dnt=true&uid=hQDCCR1qESqIV9M6RaE3TPY1g2FpkUKZ&sid=Wjc3EPQvBwt8rh1RN5XH18zPJWLgfL4g&pid=NUOl55pzP33IeHkbr6crsDOO1urNEqJY&ref=rpp.pe&es=pe-p1-p-e-xm1-audio.cdn.mdstrm.com&ote=1762448701974&ot=t5Dp30tU1m7Lzl1jhToyaQ&proto=https&pz=us&cP=128000&awCollectionId=5faaeb72f92d7b07dfe10181&aw_0_1st.playerId=audioplayer_web&liveId=5fab3416b5f9ef165cfab6e9&propertyName=audioplayer_web&propertyType=web-app&propertyVersion=vv0.1.8&listenerId=hQDCCR1qESqIV9M6RaE3TPY1g2FpkUKZ'
+		},		       
+	{
+        title: "Radio Nacional",
+        artist: "Lima Peru",
+        image: 'assets/31.jpg',
+        album: 'Online Radio',
+        source:'https://b2-f000.radiocut.com.ar/file/radiocut/nacionalperu/176/189/1761899453.997-180.010.mp3'
+      },
+	{
+        title: "RADIO EXITOSA",
+        artist: "Lima Peru",
+        image: 'assets/9.jpg',
+        album: 'Online Radio',
+        source:'https://neptuno-2-audio.mediaserver.digital/79525baf-b0f5-4013-a8bd-3c5c293c6561'
+      },		       
+	{
+        title: "Radio Congreso",
+        artist: "Lima Peru",
+        image: 'assets/10.jpg',
+        album: 'Online Radio',
+        source:'https://vivo.miradio.in/8048/stream'
+      },
+	{
+        title: "Radio Panamericana",
+        artist: "Lima Peru",
+        image: 'assets/11.jpg',
+        album: 'Online Radio',
+        source:'https://us-b4-p-e-qg12-audio.cdn.mdstrm.com/live-audio-aw/6598b62dded1380470f4e539'
+      },
+      {
+        title: "Ritmo Romantica",
+        artist: "Lima Peru",
+        image: 'assets/12.jpg',
+        album: 'Online Radio',
+        source:'https://us-b4-p-e-pb13-audio.cdn.mdstrm.com/live-audio-aw/6839e2376607bdf6b2fcde27'
+      },
+      {
+        title: "Radio Oxigeno",
+        artist: "Lima Peru",
+        image: 'assets/13.jpg',
+        album: 'Online Radio',
+        source:'https://us-b4-p-e-pb13-audio.cdn.mdstrm.com/live-audio-aw/5fab0687bcd6c2389ee9480c?aid'
+      },
+      {
+	title: "Radio Magica",
+        image: 'assets/14.jpg',
+		artist: "Lima Peru",
+        album: 'Online Radio',
+        source: 'https://us-b4-p-e-cg11-audio.cdn.mdstrm.com/live-audio/68386a6e44ba64f6064b25c9/6839e28eb3fdc597ac2e2e43/icecast.audio'
+      },
+	   {
+        title: "Radio Studio 92",
+        artist: "Lima Peru",
+        image: 'assets/15.jpg',
+        album: 'Online Radio',
+        source:'https://mdstrm.com/audio/5fada553978fe1080e3ac5ea/icecast.audio'
+      },
+	{
+        title: "Radio Planeta",
+        artist: "Lima Peru",
+        image: 'assets/16.jpg',
+        album: 'Online Radio',
+        source:'https://us-b4-p-e-qg12-audio.cdn.mdstrm.com/live-audio-aw/6839e274f40e6b9832e37633'
+      },
+	{
+        title: "La Mega Mix",
+        artist: "Lima Peru",
+        image: 'assets/17.jpg',
+        album: 'Online Radio',
+        source:'https://mdstrm.com/audio/5fada56fe4e09508207a7951/icecast.audio'
+      },
+	{
+        title: "Radio Moda",
+        artist: "Lima Peru",
+        image: 'assets/18.jpg',
+        album: 'Online Radio',
+        source:'https://us-b4-p-e-cg11-audio.cdn.mdstrm.com/live-audio-aw/6839e1c82cc4c480fcd318dd'
+      },
+	{
+        title: "Radio Onda Cero",
+        artist: "Lima Peru",
+        image: 'assets/19.jpg',
+        album: 'Online Radio',
+        source:'https://mdstrm.com/audio/6598b65ab398c90871aff8cc/icecast.audio'
+      },		       
+	{
+        title: "Radiomar",
+        artist: "Lima Peru",
+        image: 'assets/20.jpg',
+        album: 'Online Radio',
+        source:'https://us-b4-p-e-cg11-audio.cdn.mdstrm.com/live-audio-aw/6839e261d2efddf5bfbc2d3d'
+      },
+	{
+        title: "Dj vintage",
+        artist: "Lima Peru",
+        image: 'assets/21.jpg',
+        album: 'Online Radio',
+        source:'https://radio.juanjuiserver.com:8070/stream'
+      },
+	{
+        title: "Radio Cielo Am - Fm",
+        artist: "Lima Peru",
+        image: 'assets/22.jpg',
+        album: 'Online Radio',
+        source:'https://stream.zeno.fm/kfjyautiyevvv'
+      },
+	{
+        title: "Besame Fm",
+        artist: "Colombia",
+        image: 'assets/24.jpg',
+        album: 'Online Radio',
+        source:'https://playerservices.streamtheworld.com/api/livestream-redirect/BESAME_MEDELLINAAC_SC'
+		},
+	   {
+        title: "La Vero Radio",
+        artist: "Lima Peru",
+        image: 'assets/32.jpg',
+        album: 'Online Radio',
+        source:'https://stream-172.zeno.fm/urx9nk87eyduv?zt='
+      },
+	{
+        title: "Radio Urbana",
+        artist: "Lima Peru",
+        image: 'assets/23.jpg',
+        album: 'Online Radio',
+        source:'https://radio.sistemasandinos.org/7084/stream'
+		},
+	{
+        title: "Radio Vital Fm",
+        artist: "Lima Peru",
+        image: 'assets/30.jpg',
+        album: 'Online Radio',
+        source:'https://stream.mediacorp.pe/icecast:/51.159.194.111:8002/VitalFM/2/icecast.audio'
+		},
+	{
+        title: "Radio Disney Peru",
+        artist: "Lima Peru",
+        image: 'assets/29.jpg',
+        album: 'Online Radio',
+        source:'https://playerservices.streamtheworld.com/api/livestream-redirect/DISNEY_PER_LM_SC'
+		},
+       {
+        title: "Radio Planicie",
+        artist: "Lima Peru",
+        image: 'assets/27.jpg',
+        album: 'Online Radio',
+        source:'https://panel.innovatestream.pe:10842/index'
+		   },
+       {
+        title: "Radio Canto Grande",
+        artist: "Lima Peru",
+        image: 'assets/28.jpg',
+        album: 'Online Radio',
+        source:'https://servistream.info:9138/index'
+	  },		
+	{
+        title: "El Sotano",
+        artist: "Lima Peru",
+        image: 'assets/25.jpg',
+        album: 'Online Radio',
+        source:'https://sp.oyotunstream.com/8008/stream'
+  
+      }		       
+    ],
+});
+
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('installPopup').style.display = 'block';
+        });
+
+        document.getElementById('installAppButton').addEventListener('click', async () => {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('installPopup').style.display = 'none';
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response to the install prompt: ${outcome}`);
+                deferredPrompt = null;
+            }
+        });
+
+        document.getElementById('overlay').addEventListener('click', () => {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('installPopup').style.display = 'none';
+        });
+
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+
+        if (isIOS()) {
+            document.getElementById('installAppButton').style.display = 'none';
+            document.getElementById('iosInstructions').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('installPopup').style.display = 'block';
+        }
+    </script>
+    <footer style="display:grid;align-content:end">
+        <div style="background-color:#f5180f;color:#fff;text-align:center;padding:5px">
+            ©<a href="http://wa.me/51992377712">Copyright 2026 - App Desarrollado con tecnologia Pwa.</a>
+        </div>
+        <script>
+            $(".mobile-nav-toggle").click(function () {
+                $("body").toggleClass("mobile-nav-active");
+                $(".mobile-nav-toggle i").toggleClass("fa-bars fa-times");
+            });
+        </script>
+    </footer>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
