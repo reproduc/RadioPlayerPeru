@@ -37,8 +37,25 @@
             padding: 0;
             color: #000000;
         }
-        #live-preview, #player {
-            margin-bottom: 0;
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* El fondo del reproductor crece y ocupa todo el espacio libre */
+        #live-preview {
+            flex: 1 0 auto;
+        }
+        footer {
+            flex-shrink: 0;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
         }
         #installPopup {
             display: none;
